@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;com.boot.demo.DemoClass&apos; to &apos;DemoController&apos;&#x0D;&#x0A;- Original project: &apos;boot_gradle_250418&apos;&#x0D;&#x0A;- Original element: &apos;com.boot.demo.DemoClass&apos;&#x0D;&#x0A;- Renamed element: &apos;com.boot.demo.DemoController&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;DemoClass&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src\/main\/java=/gradle_scope=/main=/=/gradle_used_by_scope=/main,test=/&lt;com.boot.demo{DemoClass.java[DemoClass" matchStrategy="1" name="DemoController" qualified="false" references="true" similarDeclarations="false" stamp="1744957316817" textual="false" version="1.0"/>
+</session>
