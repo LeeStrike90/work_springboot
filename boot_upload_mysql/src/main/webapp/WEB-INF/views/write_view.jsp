@@ -144,20 +144,22 @@
 						console.log("@# obj.uuid=>"+obj.uuid);
 						console.log("@# obj.fileName=>"+obj.fileName);
 
-						var fileCallPath = obj.uploadPath + obj.uuid + "_" + obj.fileName;
+						var fileCallPath = obj.uploadPath +"/"+ obj.uuid + "_" + obj.fileName;
 						str += "<li><div>";
 						str += "<span>"+obj.fileName+"</span>";
 						str += "<img src='/display?fileName="+fileCallPath+"'>";
-						str += "</li>";
+						str += "</div></li>";
 					} else {
 						// var fileCallPath = encodeURIComponent(obj.uploadPath +"/"+ obj.uuid + "_" + obj.fileName);
-						var fileCallPath = obj.uploadPath + obj.uuid + "_" + obj.fileName;
+						var fileCallPath = obj.uploadPath +"/"+ obj.uuid + "_" + obj.fileName;
 						str += "<li><div>";
 						str += "<span>"+obj.fileName+"</span>";
 						str += "<img src='./resources/img/attach.png'>";
-						str += "</li>";
+						str += "</div></li>";
 					}
 				});//end of each
+				
+				uploadUL.append(str);
 			}
 		});//end of change
 	});//end of ready

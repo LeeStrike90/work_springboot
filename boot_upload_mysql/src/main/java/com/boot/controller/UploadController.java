@@ -1,11 +1,13 @@
 package com.boot.controller;
 
 import java.io.File;
+import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -25,48 +27,72 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @Slf4j
 @RequestMapping("/comment")
-public class UploadController {
+public class UploadController
+{
 //	@Autowired
 //	private CommentService service;
-	
+
 	@PostMapping("/uploadAjaxAction")
-	public ResponseEntity<List<BoardAttachDTO>> uploadAjaxPost(MultipartFile[] uploadFile) {
+	public ResponseEntity<List<BoardAttachDTO>> uploadAjaxPost(MultipartFile[] uploadFile)
+	{
 		log.info("@# uploadAjaxAction()");
-		
 		List<BoardAttachDTO> list = new ArrayList<BoardAttachDTO>();
 		String uploadFolder = "C:\\develop\\upload";
 //		날짜별 폴더 생성
 		String uploadFolderPath = getFolder();
 		File uploadPath = new File(uploadFolder, uploadFolderPath);
-		log.info("@# uploadPath=>"+uploadPath);
-		
-		if (uploadPath.exists() == false) {
+		log.info("@# uploadPath=>" + uploadPath);
+		if (uploadPath.exists() == false)
+		{
 			// make yyyy/MM/dd folder
 			uploadPath.mkdirs();
 		}
-		
+		for (MultipartFile multipartFile : uploadFile)
+		{
+			log.info("===================================");
+			// getOriginalFilename : 업로드 되는 파일 이름
+			log.info("※ 업로드 되는 파일 이름 => " + multipartFile.getOriginalFilename());
+			// getSize : 업로드 되는 파일 크기
+			log.info("※ 업로드 되는 파일 크기 => " + multipartFile.getSize());
+			String uploadFileName = multipartFile.getOriginalFilename();
+			UUID uuid = UUID.randomUUID();
+			log.info("※ uuid => " + uuid);
+			BoardAttachDTO boardAttachDTO = new BoardAttachDTO();
+			boardAttachDTO.setFileName(uploadFileName);
+			boardAttachDTO.setUuid(uuid.toString());
+			boardAttachDTO.setUploadPath(uploadFolderPath);
+			log.info("@# uuid =>" + uuid);
+		}
+
 		return null;
 	}
 
 //	날짜별 폴더 생성
-	private String getFolder() {
+	private String getFolder()
+	{
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = new Date();
 		String str = sdf.format(date);
-		
-		log.info("@# str=>"+str);
-		
+
+		log.info("@# str=>" + str);
+
 		return str;
 	}
+
+//	이미지 여부 체크
+	public boolean checkImageType(File file)
+	{
+		try
+		{
+//			이미지파일인지 체크하기 위한 타입(probeContentType)
+			String contentType = Files.probeContentType(file.toPath());
+			log.info("@# content Type" + contentType);
+//			startsWith : 파일종류 판단
+			return contentType.startsWith("images"); // 참이면 이미지파일
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		return false; // 거짓이면 이미지파일이 아님
+	}
 }
-
-
-
-
-
-
-
-
-
-
-
