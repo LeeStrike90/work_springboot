@@ -1,10 +1,9 @@
 package com.boot.service;
 
-import com.boot.dto.BoardDTO;
-import com.boot.dto.CriteriaDTO;
-
 import java.util.ArrayList;
 
+import com.boot.dto.*;
+
 public interface PageService {
-    public ArrayList<BoardDTO> listWithPaging(CriteriaDTO criteriaDTO);
+	public ArrayList<BoardDTO> listWithPaging(Criteria cri);
 }

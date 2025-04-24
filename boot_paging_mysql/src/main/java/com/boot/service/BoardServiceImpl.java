@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.boot.dao.BoardAttachDAO;
 import com.boot.dao.BoardDAO;
 import com.boot.dto.BoardDTO;
+import com.boot.dto.Criteria;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -68,11 +69,28 @@ public class BoardServiceImpl implements BoardService{
 
 	@Override
 	public void delete(HashMap<String, String> param) {
+		log.info("@# delete param=>"+param);
+
 		BoardDAO dao=sqlSession.getMapper(BoardDAO.class);
-		BoardAttachDAO attachDao=sqlSession.getMapper(BoardAttachDAO.class);
+		BoardAttachDAO attachDAO=sqlSession.getMapper(BoardAttachDAO.class);
 		
 		dao.delete(param);
-		attachDao.deleteFile(param.get("boardNo"));
+		attachDAO.deleteFile(param.get("boardNo"));
+	}
+
+	@Override
+	public ArrayList<BoardDTO> listWithPaging(Criteria cri) {
+		log.info("@# BoardServiceImpl listWithPaging");
+		log.info("@# cri : " + cri);
+		
+		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
+		return dao.listWithPaging(cri);
+	}
+	
+	@Override
+	public int getTotalCount() {
+		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
+		return dao.getTotalCount();
 	}
 
 }

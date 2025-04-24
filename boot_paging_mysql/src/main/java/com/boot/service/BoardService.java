@@ -7,6 +7,8 @@ import com.boot.dto.*;
 
 public interface BoardService {
 	public ArrayList<BoardDTO> list();
+	public ArrayList<BoardDTO> listWithPaging(Criteria cri);
+	public int getTotalCount();
 //	public void write(HashMap<String, String> param);
 	public void write(BoardDTO boardDTO);
 	public BoardDTO contentView(HashMap<String, String> param);
