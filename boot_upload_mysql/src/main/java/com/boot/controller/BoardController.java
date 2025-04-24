@@ -36,10 +36,17 @@ public class BoardController {
 	}
 	
 	@RequestMapping("/write")
-	public String write(@RequestParam HashMap<String, String> param) {
+//	public String write(@RequestParam HashMap<String, String> param) {
+	public String write(BoardDTO boardDTO) {
 		log.info("@# write()");
+		log.info("@# boardDTO=>"+boardDTO);
 		
-		service.write(param);
+		if (boardDTO.getAttachList() != null) {
+			boardDTO.getAttachList().forEach(attach -> log.info("@# attach=>"+attach));
+		}
+		
+//		service.write(param);
+		service.write(boardDTO);
 		
 		return "redirect:list";
 	}

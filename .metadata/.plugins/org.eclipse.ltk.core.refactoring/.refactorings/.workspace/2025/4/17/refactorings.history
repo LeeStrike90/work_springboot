@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Delete 5 resources" deleteContents="false" description="Delete 5 resources" element1="/boot_250418" element2="/boot_board_250421" element3="/boot_board_login" element4="/boot_gradle_250418" element5="/boot_upload_mysql" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="5" stamp="1745454629475"/>
+</session>
