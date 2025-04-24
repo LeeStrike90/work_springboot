@@ -2706,3 +2706,59 @@ java.lang.NullPointerException: Cannot invoke "org.eclipse.debug.core.ILaunchCon
 	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1321)
 	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:498)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2025-04-24 09:31:55.056
+!MESSAGE Classpath changed for project: boot_board_login
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2025-04-24 09:31:56.607
+!MESSAGE Classpath changed for project: boot_board_250421
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2025-04-24 09:31:56.610
+!MESSAGE Classpath changed for project: boot_board_login
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2025-04-24 09:31:56.612
+!MESSAGE Classpath changed for project: boot_gradle_250418
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2025-04-24 09:31:56.614
+!MESSAGE Classpath changed for project: boot_upload_mysql
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2025-04-24 09:32:05.954
+!MESSAGE Classpath changed for project: boot_board_login
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2025-04-24 09:32:05.962
+!MESSAGE Boot project ADDED: boot_board_login
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2025-04-24 09:32:06.654
+!MESSAGE Classpath changed for project: boot_board_login
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2025-04-24 09:32:24.881
+!MESSAGE Classpath changed for project: boot_board_login
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2025-04-24 09:32:26.684
+!MESSAGE Classpath changed for project: boot_upload_mysql
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2025-04-24 09:32:26.684
+!MESSAGE Boot project ADDED: boot_upload_mysql
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2025-04-24 09:32:26.685
+!MESSAGE Classpath changed for project: boot_board_250421
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2025-04-24 09:32:26.685
+!MESSAGE Boot project ADDED: boot_board_250421
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2025-04-24 09:32:27.236
+!MESSAGE Classpath changed for project: boot_gradle_250418
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2025-04-24 09:32:27.236
+!MESSAGE Boot project ADDED: boot_gradle_250418
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2025-04-24 12:21:14.444
+!MESSAGE Classpath changed for project: boot_paging_mysql
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2025-04-24 12:21:14.445
+!MESSAGE Boot project ADDED: boot_paging_mysql
+
+!ENTRY org.eclipse.core.resources 2 2 2025-04-24 14:25:23.298
+!MESSAGE Save operation warnings.
+!SUBENTRY 1 org.eclipse.core.resources 2 234 2025-04-24 14:25:23.298
+!MESSAGE The project description file (.project) for 'boot_paging_mysql' was missing.  This file contains important information about the project.  A new project description file has been created, but some information about the project may have been lost.

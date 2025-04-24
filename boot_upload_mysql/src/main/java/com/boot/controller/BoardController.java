@@ -2,6 +2,7 @@ package com.boot.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,10 +10,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.boot.dto.BoardAttachDTO;
 import com.boot.dto.BoardDTO;
 import com.boot.dto.CommentDTO;
 import com.boot.service.BoardService;
 import com.boot.service.CommentService;
+import com.boot.service.UploadService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -24,6 +27,9 @@ public class BoardController {
 	
 	@Autowired
 	private CommentService commentService;
+	
+	@Autowired
+	private UploadService uploadService;
 	
 	@RequestMapping("/list")
 	public String list(Model model) {
@@ -84,8 +90,16 @@ public class BoardController {
 	@RequestMapping("/delete")
 	public String delete(@RequestParam HashMap<String, String> param) {
 		log.info("@# delete()");
+		log.info("@# param=>"+param);
+		log.info("@# boardNo=>"+param.get("boardNo"));
 		
+		List<BoardAttachDTO> fileList = uploadService.getFileList(Integer.parseInt(param.get("boardNo")));
+		log.info("@# fileList=>"+fileList);
+		
+//		게시글 삭제, 댓글 삭제
 		service.delete(param);
+//		폴더 삭제
+		uploadService.deleteFiles(fileList);
 		
 		return "redirect:list";
 	}

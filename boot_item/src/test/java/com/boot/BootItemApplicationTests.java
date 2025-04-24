@@ -9,5 +9,4 @@ class BootItemApplicationTests {
 	@Test
 	void contextLoads() {
 	}
-
 }

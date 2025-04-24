@@ -13,5 +13,9 @@
 		select uuid,uploadPath,fileName,image,boardNo 
 		  from board_attach where boardNo=#{boardNo}
     </select>
-    
+
+    <delete id="deleteFile">
+    	delete from board_attach where boardNo=#{boardNo}
+    </delete>
+        
 </mapper>

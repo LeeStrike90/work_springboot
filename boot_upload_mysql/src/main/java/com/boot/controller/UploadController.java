@@ -13,6 +13,8 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -207,8 +209,36 @@ public class UploadController {
 		
 		return new ResponseEntity<>(service.getFileList(Integer.parseInt(param.get("boardNo"))), HttpStatus.OK); 
 	}
+	
+	@GetMapping("/download")
+	public ResponseEntity<Resource> download(String fileName) {
+		log.info("@# download fileName=>"+fileName);
+		
+		//파일을 리소스(자원)로 변경. 파일을 비트값으로 전환
+		Resource resource = new FileSystemResource("C:\\develop\\upload\\"+fileName);
+		log.info("@# resource=>"+resource);
+		
+//		리소스에서 파일명을 찾아서 변수에 저장
+		String resourceName = resource.getFilename();
+		
+//		uuid 를 제외한 파일명
+		String resourceOriginalName = resourceName.substring(resourceName.indexOf("_")+1);
+		HttpHeaders headers=new HttpHeaders();
+		
+		try {
+//			헤더에 파일다운로드 정보 추가
+			headers.add("Content-Disposition"
+					  , "attachment; filename="
+					  + new String(resourceOriginalName.getBytes("UTF-8"), "ISO-8859-1"));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+//		윈도우 다운로드시 필요한 정보(리소스, 헤더, 상태OK)
+		return new ResponseEntity<Resource>(resource, headers, HttpStatus.OK); 
+	}
+	
 }
-
 
 
 
