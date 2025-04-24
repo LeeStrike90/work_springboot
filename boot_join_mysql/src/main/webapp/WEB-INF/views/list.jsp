@@ -24,7 +24,6 @@
 		</c:forEach>
 		<tr>
 			<td colspan="5">
-			<!-- 			write_view : 컨트롤러단 호출 -->
 				<a href="write_view">글작성</a>
 			</td>
 		</tr>

@@ -9,11 +9,10 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CommentDTO
-{
-    private int commentNo;
-    private String commentWriter;
-    private String commentContent;
-    private int boardNo;
-    private Timestamp commentCreatedTime;
+public class CommentDTO {
+	private int commentNo;
+	private String commentWriter;
+	private String commentContent;
+	private int boardNo;
+	private Timestamp commentCreatedTime;
 }

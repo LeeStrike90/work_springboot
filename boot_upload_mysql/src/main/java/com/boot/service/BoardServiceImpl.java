@@ -68,27 +68,14 @@ public class BoardServiceImpl implements BoardService{
 
 	@Override
 	public void delete(HashMap<String, String> param) {
-		log.info("@# delete param=>"+param);
-		
 		BoardDAO dao=sqlSession.getMapper(BoardDAO.class);
-		BoardAttachDAO attachDAO=sqlSession.getMapper(BoardAttachDAO.class);
+		BoardAttachDAO attachDao=sqlSession.getMapper(BoardAttachDAO.class);
 		
-//		게시글 삭제
 		dao.delete(param);
-//		댓글 삭제
-		attachDAO.deleteFile(param.get("boardNo"));
+		attachDao.deleteFile(param.get("boardNo"));
 	}
 
 }
-
-
-
-
-
-
-
-
-
 
 
 

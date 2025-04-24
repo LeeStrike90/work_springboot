@@ -5,10 +5,33 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
+<script type="text/javascript">
+	function fn_submit() {
+		alert("01");
+		var formData = $("#frm").serialize();//form 요소 자체
+		alert("02");
+
+		//비동기 전송방식의 jquery 함수
+		$.ajax({
+			type : "post",
+			data : formData,
+			url : "registerOk",
+			success : function(data) {
+				alert("저장완료");
+				location.href="login";
+			},
+			error : function() {
+				alert("오류발생");
+			}
+		});
+	}
+</script>
 </head>
 <body>
 	<table border="1" align="center">
-		<form method="post" action="registerOk">
+<!-- 		<form method="post" action="registerOk"> -->
+		<form id="frm">
 			<tr height="50">
 				<td colspan="2">
 					<h1>회원 가입 신청</h1>
@@ -40,7 +63,8 @@
 			</tr>
 			<tr height="30">
 				<td colspan="2">
-					<input type="submit" value="등록">
+<!-- 					<input type="submit" value="등록"> -->
+					<input type="button" value="등록" onclick="fn_submit()">
 				</td>
 			</tr>
 		</form>

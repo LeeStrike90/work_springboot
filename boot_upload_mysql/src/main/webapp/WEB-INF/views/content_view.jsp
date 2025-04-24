@@ -5,6 +5,7 @@
 		<head>
 			<meta charset="UTF-8">
 			<title>Insert title here</title>
+			<script src="${pageContext.request.contextPath}/js/jquery.js"></script>
 			<style>
 				.uploadResult {
 					width: 100%;
@@ -25,7 +26,6 @@
 					width: 100px;
 				}
 			</style>
-			<script src="${pageContext.request.contextPath}/js/jquery.js"></script>
 		</head>
 
 		<body>
@@ -220,54 +220,52 @@
 							}
 						});//end of arr each
 
-						console.log("@# str=>"+str);
+						console.log("@# str=>" + str);
 						$(".uploadResult ul").html(str);
-						
+
 					});//end of getJSON
 
-					$(".uploadResult").on("click","li",function (e) {
+					$(".uploadResult").on("click", "li", function (e) {
 						console.log("@# uploadResult click");
-						
+
 						var liObj = $(this);
-						console.log("@# path 01=>", liObj.data("path"));
-						console.log("@# uuid=>", liObj.data("uuid"));
-						console.log("@# filename=>", liObj.data("filename"));
-						console.log("@# type=>", liObj.data("type"));
-						
+						console.log("@# path => ", liObj.data("path"));
+						console.log("@# uuid => ", liObj.data("uuid"));
+						console.log("@# filename => ", liObj.data("filename"));
+						console.log("@# type => ", liObj.data("type"));
+
 						var path = liObj.data("path") + "/" + liObj.data("uuid") + "_" + liObj.data("filename");
-						console.log("@# path 02=>", path);
-						
-						// 이미지일때
+						console.log("@# path 02 => ", path);
+
+						// 이미지 일 때
 						if (liObj.data("type")) {
 							console.log("@# 이미지 확대");
-							
+
 							showImage(path);
-						// 이미지가 아닐때
+							// 이미지가 아닐 때
 						} else {
 							console.log("@# 파일 다운로드");
-							
-							//컨트롤러의 download 호출
-							self.location = "/download?fileName="+path;
-						}
-					});//end of uploadResult click
-					
-					function showImage(fileCallPath) {
-						console.log("@# fileCallPath=>", fileCallPath);
-						
-						$(".bigPicture").css("display", "flex").show();
-						$(".bigPic").html("<img src='/display?fileName="+fileCallPath+"'>")
-										  .animate({width: "100%", heigh: "100%"}, 1000);
-					}
 
+							// 컨트롤러의 download호출
+							self.location = "/download?fileName=" + path;
+						}
+					}); // end of uploadResult click
+
+					function showImage(fileCallPath) {
+						console.log("@# fileCallPath => ", fileCallPath);
+
+						$(".bigPicture").css("display", "flex").show();
+						$(".bigPic").html("<img src='/display?fileName=" + fileCallPath + "'>")
+							.animate({ width: "100%", height: "100%" }, 1000);
+					}
 					$(".bigPicture").on("click", function (e) {
-						$(".bigPic").animate({width: "0%", heigh: "0%"}, 1000);
+						$(".bigPic").animate({ width: "0%", height: "0%" }, 1000);
 						setTimeout(function () {
 							$(".bigPicture").hide();
 						}, 1000);
 					});
-
 				})();//end of 즉시실행함수
-			});//end of document ready
+			}); // end of document ready
 		</script>
 
 		</html>

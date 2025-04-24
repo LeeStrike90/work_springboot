@@ -6,6 +6,6 @@
     <title>Document</title>
 </head>
 <body>
-    hello.jsp~
+    hello.jsp
 </body>
 </html>

@@ -5,24 +5,23 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<!-- 	<script src="../resources/js/jquery.js"></script> -->
-	<script src="${pageContext.request.contextPath}/js/jquery.js"></script>
+<script src="${pageContext.request.contextPath}/static/js/jquery.js"></script>
 	<script type="text/javascript">
 		function fn_submit() {
 			alert("01");
-			var formData = $("#frm").serialize();//form 요소 자체
+			var formData = $("#frm").serialize();
 			alert("02");
 			
-			//비동기 전송방식의 jquery 함수
 			$.ajax({
-				 type:"post"
+				type:"post"
 				,data:formData
 				,url:"write"
 				,success: function(data) {
-					alert("저장완료");
+					alter("저장완료")
+					location.href="list";
 				}
 				,error: function() {
-					alert("오류발생");
+					alter("오류발생")
 				}
 			});
 		}
@@ -30,7 +29,6 @@
 </head>
 <body>
 	<table width="500" border="1">
-<!-- 		<form method="post" action="write"> -->
 		<form id="frm">
 			<tr>
 				<td>이름</td>
@@ -52,22 +50,12 @@
 			</tr>
 			<tr>
 				<td colspan="2">
-<!-- 					<input type="submit" value="입력"> -->
-					<input type="submit" onclick="fn_submit()" value="입력">
+					<input type="button" onclick="fn_submit()" value="입력">
 					&nbsp;&nbsp;
-					<a href="list">목록보기</a>
+					<a href="list">목록</a>
 				</td>
 			</tr>
 		</form>
 	</table>
 </body>
 </html>
-
-
-
-
-
-
-
-
-

@@ -1,8 +1,9 @@
-package com.boot.service;
+package com.boot.Service;
+
+import com.boot.dto.EmpDeptDTO;
 
 import java.util.ArrayList;
-
-import com.boot.dto.*;
+import java.util.HashMap;
 
 public interface EmpInfoService {
 	public ArrayList<EmpDeptDTO> list();

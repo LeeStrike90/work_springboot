@@ -1,28 +1,11 @@
 package com.boot.dao;
 
-import java.util.ArrayList;
-
+import com.boot.dto.EmpDeptDTO;
 import org.apache.ibatis.annotations.Mapper;
 
-import com.boot.dto.*;
+import java.util.ArrayList;
 
-//실행시 매퍼파일을 읽어 들이도록 지정
 @Mapper
 public interface EmpDeptDAO {
-	public ArrayList<EmpDeptDTO> list();
+    public ArrayList<EmpDeptDTO> list();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

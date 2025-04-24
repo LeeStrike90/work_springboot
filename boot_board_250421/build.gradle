@@ -1,6 +1,7 @@
 plugins {
 	id 'java'
 //	id 'org.springframework.boot' version '3.4.4'
+//	jsp사용하기위해 버전 다운그레이드
 	id 'org.springframework.boot' version '2.7.13'
 	id 'io.spring.dependency-management' version '1.1.7'
 }
@@ -27,7 +28,9 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 //	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.4'
+//	다운그레이드
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.3.1'
+//	톰켓과 jstl추가
 	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
 	implementation 'javax.servlet:jstl:1.2'
 	compileOnly 'org.projectlombok:lombok'

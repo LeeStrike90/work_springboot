@@ -21,102 +21,88 @@ import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @Slf4j
-public class BoardController
-{
-    @Autowired
-    private BoardService service;
+public class BoardController {
+	@Autowired
+	private BoardService service;
 
-    @Autowired
-    private CommentService commentService;
+	@Autowired
+	private CommentService commentService;
 
-    @Autowired
-    private UploadService uploadService;
+	@Autowired
+	private UploadService uploadService;
 
-    //	@RequestMapping("/list")
-    @RequestMapping("/list_old")
-    public String list(Model model)
-    {
-        log.info("@# list()");
+//	@RequestMapping("/list")
+	@RequestMapping("/list_old")
+	public String list(Model model) {
+		log.info("@# list()");
 
-        ArrayList<BoardDTO> list = service.list();
-        model.addAttribute("list", list);
+		ArrayList<BoardDTO> list = service.list();
+		model.addAttribute("list", list);
 
-        return "list";
-    }
+		return "list";
+	}
 
-    @RequestMapping("/write")
+	@RequestMapping("/write")
 //	public String write(@RequestParam HashMap<String, String> param) {
-    public String write(BoardDTO boardDTO)
-    {
-        log.info("@# write()");
-        log.info("@# boardDTO=>" + boardDTO);
+	public String write(BoardDTO boardDTO) {
+		log.info("@# write()");
+		log.info("@# boardDTO=>" + boardDTO);
 
-        if (boardDTO.getAttachList() != null)
-        {
-            boardDTO.getAttachList().forEach(attach -> log.info("@# attach=>" + attach));
-        }
+		if (boardDTO.getAttachList() != null) {
+			boardDTO.getAttachList().forEach(attach -> log.info("@# attach=>" + attach));
+		}
 
 //		service.write(param);
-        service.write(boardDTO);
+		service.write(boardDTO);
 
-        return "redirect:list";
-    }
+		return "redirect:list";
+	}
 
-    @RequestMapping("/write_view")
-    public String write_view()
-    {
-        log.info("@# write_view()");
+	@RequestMapping("/write_view")
+	public String write_view() {
+		log.info("@# write_view()");
 
-        return "write_view";
-    }
+		return "write_view";
+	}
 
-    @RequestMapping("/content_view")
-    public String content_view(@RequestParam HashMap<String, String> param, Model model)
-    {
-        log.info("@# content_view()");
+	@RequestMapping("/content_view")
+	public String content_view(@RequestParam HashMap<String, String> param, Model model) {
+		log.info("@# content_view()");
 
-        BoardDTO dto = service.contentView(param);
-        model.addAttribute("content_view", dto);
+		BoardDTO dto = service.contentView(param);
+		model.addAttribute("content_view", dto);
 
-        // 해당 게시글에 작성된 댓글 리스트를 가져옴
-        ArrayList<CommentDTO> commentList = commentService.findAll(param);
-        model.addAttribute("commentList", commentList);
+		// 해당 게시글에 작성된 댓글 리스트를 가져옴
+		ArrayList<CommentDTO> commentList = commentService.findAll(param);
+		model.addAttribute("commentList", commentList);
 
-        return "content_view";
-    }
+		return "content_view";
+	}
 
-    @RequestMapping("/modify")
-    public String modify(@RequestParam HashMap<String, String> param)
-    {
-        log.info("@# modify()");
+	@RequestMapping("/modify")
+	public String modify(@RequestParam HashMap<String, String> param) {
+		log.info("@# modify()");
 
-        service.modify(param);
+		service.modify(param);
 
-        return "redirect:list";
-    }
+		return "redirect:list";
+	}
 
-    @RequestMapping("/delete")
-    public String delete(@RequestParam HashMap<String, String> param)
-    {
-        log.info("@# delete()");
-        log.info("@# param=>" + param);
-        log.info("@# boardNo=>" + param.get("boardNo"));
+	@RequestMapping("/delete")
+	public String delete(@RequestParam HashMap<String, String> param) {
+		log.info("@# delete()");
+		log.info("@# param => " + param);
+		log.info("@# boardNo => " + param.get("boardNo"));
 
-        List<BoardAttachDTO> fileList = uploadService.getFileList(Integer.parseInt(param.get("boardNo")));
-        log.info("@# fileList=>" + fileList);
+		// 게시글삭제, 댓글삭제
+		service.delete(param);
+		
+		List<BoardAttachDTO> fileList = uploadService.getFileList(Integer.parseInt(param.get("boardNo")));
+		log.info("@# fileList => " + fileList);
+		
+		// 폴더 삭제
+		uploadService.deleteFiles(fileList);
 
-//		게시글 삭제, 댓글 삭제
-        service.delete(param);
-//		폴더 삭제
-        uploadService.deleteFiles(fileList);
-
-        return "redirect:list";
-    }
+		return "redirect:list";
+	}
 }
-
-
-
-
-
-
-
