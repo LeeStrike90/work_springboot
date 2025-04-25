@@ -27,7 +27,8 @@ public class PageController {
 		
 //		model.addAttribute("list", service.listWithPaging(cri));
 		ArrayList<BoardDTO> list = service.listWithPaging(cri);
-		int total = service.getTotalCount();
+//		int total = service.getTotalCount();
+		int total = service.getTotalCount(cri);
 		log.info("@# total=>"+total);
 		
 		model.addAttribute("list", list);

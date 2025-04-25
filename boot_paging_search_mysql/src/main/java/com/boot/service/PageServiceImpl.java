@@ -33,11 +33,13 @@ public class PageServiceImpl implements PageService{
 	}
 
 	@Override
-	public int getTotalCount() {
+//	public int getTotalCount() {
+	public int getTotalCount(Criteria cri) {
 		log.info("@# PageServiceImpl getTotalCount");
 		
 		PageDAO dao=sqlSession.getMapper(PageDAO.class);
-		int total = dao.getTotalCount();
+//		int total = dao.getTotalCount();
+		int total = dao.getTotalCount(cri);
 		
 		return total;
 	}
