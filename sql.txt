@@ -1,0 +1,78 @@
+-- 299~263 'shin'
+select boardNo, boardName, boardTitle, boardContent, boardDate, boardHit from (
+   select rownum, boardNo, boardName, boardTitle, boardContent, boardDate, boardHit
+      from (select row_number() over(order by boardNo desc) as rownum
+            , boardNo, boardName, boardTitle, boardContent, boardDate, boardHit
+         from tbl_board
+            where boardName like '%shin%'
+         order by boardNo desc
+         ) a
+      where rownum <= (1*10)
+   ) aa
+    where rownum > (0*10);
+
+-- 288, 188 , 88
+select boardNo, boardName, boardTitle, boardContent, boardDate, boardHit from (
+   select rownum, boardNo, boardName, boardTitle, boardContent, boardDate, boardHit
+      from (select row_number() over(order by boardNo desc) as rownum
+            , boardNo, boardName, boardTitle, boardContent, boardDate, boardHit
+         from tbl_board
+            where boardContent like '%88%'
+         order by boardNo desc
+         ) a
+      where rownum <= (1*10)
+   ) aa
+    where rownum > (0*10);
+
+-- 1page (300~291)
+-- 300~282 apple
+select boardNo, boardName, boardTitle, boardContent, boardDate, boardHit from (
+   select rownum, boardNo, boardName, boardTitle, boardContent, boardDate, boardHit
+      from (select row_number() over(order by boardNo desc) as rownum
+            , boardNo, boardName, boardTitle, boardContent, boardDate, boardHit
+         from tbl_board
+            where boardTitle like '%apple%'
+         order by boardNo desc
+         ) a
+      where rownum <= (1*10)
+   ) aa
+    where rownum > (0*10);
+
+-- 2page (290~281)
+select * from (
+   select rownum,  boardNo, boardName, boardTitle, boardContent, boardDate, boardHit
+      from (select row_number() over(order by boardNo desc) as rownum
+            , boardNo, boardName, boardTitle, boardContent, boardDate, boardHit
+         from tbl_board
+         order by boardNo desc
+         ) a
+      where rownum <= (2*10)
+   ) aa
+    where rownum > (1*10);
+
+
+-- 300~288
+select boardNo, boardName, boardTitle, boardContent, boardDate, boardHit from (
+   select rownum, boardNo, boardName, boardTitle, boardContent, boardDate, boardHit
+      from (select row_number() over(order by boardNo desc) as rownum
+            , boardNo, boardName, boardTitle, boardContent, boardDate, boardHit
+         from tbl_board
+            where boardTitle like '%apple%' or boardContent like '%88%'
+            or boardName like '%shin%'
+         order by boardNo desc
+         ) a
+      where rownum <= (1*10)
+   ) aa
+    where rownum > (0*10);
+-- 300~282
+select boardNo, boardName, boardTitle, boardContent, boardDate, boardHit from (
+   select rownum, boardNo, boardName, boardTitle, boardContent, boardDate, boardHit
+      from (select row_number() over(order by boardNo desc) as rownum
+            , boardNo, boardName, boardTitle, boardContent, boardDate, boardHit
+         from tbl_board
+            where boardTitle like '%apple%' or boardContent like '%88%'
+         order by boardNo desc
+         ) a
+      where rownum <= (1*10)
+   ) aa
+    where rownum > (0*10);
