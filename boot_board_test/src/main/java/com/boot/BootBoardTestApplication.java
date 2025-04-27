@@ -4,12 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BootPagingMysqlApplication
-{
+public class BootBoardTestApplication {
 
-	public static void main(String[] args)
-	{
-		SpringApplication.run(BootPagingMysqlApplication.class, args);
+	public static void main(String[] args) {
+		SpringApplication.run(BootBoardTestApplication.class, args);
 	}
 
 }

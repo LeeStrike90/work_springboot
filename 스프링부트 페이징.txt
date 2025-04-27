@@ -3,6 +3,15 @@ select * from tbl_board;
 desc tbl_board;
 drop table tbl_board;
 
+CREATE TABLE board_comment
+(commentNo int auto_increment primary key, 
+commentWriter VARCHAR(20), 
+commentContent VARCHAR(300), 
+boardNo int, 
+commentCreatedTime datetime default now()
+);
+
+
 CREATE TABLE tbl_board (
     boardNo INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     boardName VARCHAR(20),
@@ -11,6 +20,16 @@ CREATE TABLE tbl_board (
     boardDate DATETIME DEFAULT CURRENT_TIMESTAMP,
     boardHit INT DEFAULT 0
 );
+
+create table board_attach
+(uuid varchar(100) primary key
+,uploadPath varchar(200) not null
+,fileName varchar(100) not null
+,image char(1)
+,boardNo int
+);
+
+
 
 delimiter //
 create procedure paging_insert(v_count INT)
